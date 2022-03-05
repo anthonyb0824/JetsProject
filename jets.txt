@@ -1,0 +1,5 @@
+FighterJet,F-16,1500,2245,12
+FighterJet,F-15,1875,2992,87
+CargoJet,C-17,590,2784,340
+CargoJet,C-5,570,7273,224
+PassengerJet,Boeing737,588,3825,997000000
