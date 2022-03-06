@@ -50,42 +50,69 @@ public class AirField {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return "AirField [jets=" + jets.toString() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		//string builder
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("AirField contains \n");
+//		for(int i = 0; i<jets.size();i++) {
+//		sb.append(jets.get(i).toString());
+//		}
+//		return sb.toString();
+//	}
 
-	public void listFleet() {
-		System.out.println(jets.toString());
-
+	public String listFleet() {
+		StringBuilder sb = new StringBuilder("AirField contains: \n");
+		for(int i = 0; i<jets.size();i++) {
+		sb.append(jets.get(i).toString());
+		}
+		String listFleet = sb.toString();
+		return listFleet;
 	}
 
 	public void launchAlljets() {
-		// iterate though the arraylist jets and call .fly() on each
 		for (int i = 0; i < jets.size(); i++) {
-			double time = (jets.get(i).getRange())/jets.get(i).getSpeed();
+			double time = (jets.get(i).getRange()) / jets.get(i).getSpeed();
 			jets.get(i).fly();
-			System.out.println("This jet can fly "+jets.get(i).getRange()+" miles at a speed of "+jets.get(i).getSpeed()+"MPH");
-			System.out.println("Ill be out of fuel in "+time+" hours"+"\n");
-			
+			System.out.println("This jet can fly " + jets.get(i).getRange() + " miles at a speed of "
+					+ jets.get(i).getSpeed() + "MPH");
+			System.out.println("It will be out of fuel in " + time + " hours" + "\n");
+
 		}
 	}
 
 	public void viewFastestJet() {
-		// iterate though the arrylist and compare jets.get(i).getSpeed()
-		for(int i = 0; i<jets.size(); i++) {
-			
+		Jet fastest = new Jet(null, 0, 0, 0);
+		for (int i = 0; i < jets.size(); i++) {
+			if (jets.get(i).getSpeed() > fastest.getSpeed()) {
+				fastest = jets.get(i);
+
+			}
 		}
+		System.out.println("The Jet with the highest speed is :" + fastest.getModel() + ".");
+		System.out.println("It has a range of: " + fastest.getRange() + " miles.");
+		System.out.println("It has a price of: $" + fastest.getPrice() + " million.");
+		System.out.println("It has a range of: " + fastest.getSpeed() + "mph");
 	}
 
 	public void viewJetWithLongestRange() {
-		// TODO Auto-generated method stub
+		Jet longestRange = new Jet(null, 0, 0, 0);
+		for (int i = 0; i < jets.size(); i++) {
+			if (jets.get(i).getRange() > longestRange.getRange()) {
+				longestRange = jets.get(i);
+			}
+		}
+		System.out.println("The Jet with the longest range is :" + longestRange.getModel() + ".");
+		System.out.println("It has a range of: " + longestRange.getRange() + " miles.");
+		System.out.println("It has a price of: $" + longestRange.getPrice() + " million.");
+		System.out.println("It has a speed of: " + longestRange.getSpeed() + "mph.");
 
 	}
 
 	public void loadCargo() {
 		for (Jet o : jets) {
 			if (o instanceof CargoJet) {
+				System.out.print(((CargoJet) o).getModel() + " ");
 				((CargoJet) o).loadCargo();
 			}
 		}
@@ -94,32 +121,75 @@ public class AirField {
 	public void dogFight() {
 		for (Jet o : jets) {
 			if (o instanceof FighterJet) {
+				//System.out.print(((FighterJet) o).getModel() + " ");
 				((FighterJet) o).fight();
 			}
 		}
 	}
 
 	public void loadPassengers() {
-		// call loadP for passenger jets
 		for (Jet o : jets) {
 			if (o instanceof PassengerJet) {
+				System.out.print(((PassengerJet) o).getModel() + " ");
 				((PassengerJet) o).loadPassengers();
 			}
 		}
 	}
 
 	public void addAJet() {
+		boolean validInput = false;
+		String type = "";
+		double speed = 0;
+		int range = 0;
+		long price = 0;
+
 		System.out.println("What type would you like to add?");
-		System.out.println("EX: Cargo, Fighter, Passenger");
-		String type = (kb.next()).toLowerCase();
+		while (!validInput) {
+			System.out.println("EX: Cargo, Fighter, Passenger");
+			type = (kb.next()).toLowerCase();
+			if (type.toLowerCase().equals("cargo") || type.toLowerCase().equals("fighter")
+					|| type.toLowerCase().equals("passenger")) {
+				validInput = true;
+			} else {
+				System.err.println("Invalid  input! Try again");
+			}
+
+		}
 		System.out.println("Enter the model: ");
 		String model = kb.next();
 		System.out.println("Enter the Speed:");
-		double speed = Double.parseDouble(kb.next());
+		validInput = false;
+		while (!validInput) {
+			try {
+				speed = Double.parseDouble(kb.next());
+				validInput = true;
+
+			} catch (NumberFormatException e) {
+				System.err.println("Invalid input! Try again");
+			}
+
+		}
+		validInput = false;
 		System.out.println("Enter the range:");
-		int range = Integer.parseInt(kb.next());
+		while (!validInput) {
+			try {
+				range = Integer.parseInt(kb.next());
+				validInput = true;
+
+			} catch (NumberFormatException e) {
+				System.err.println("Invalid input! Try again");
+			}
+		}
+		validInput = false;
 		System.out.println("Enter the prce:");
-		long price = Long.parseLong(kb.next());
+		while (!validInput) {
+			try {
+				price = Long.parseLong(kb.next());
+				validInput = true;
+			} catch (Exception e) {
+				System.err.println("Invalid input! Try again");
+			}
+		}
 
 		switch (type) {
 		case "fighter":
@@ -139,8 +209,6 @@ public class AirField {
 
 	public void removeAJet() {
 		int input;
-		// iterate though the array and print them 1,2,3,4 and have the user pick to
-		// delete one
 		System.out.println("Please pick a jet to remove.");
 		for (int i = 0; i < jets.size(); i++) {
 			System.out.println((i + 1) + ": " + jets.get(i).getModel());

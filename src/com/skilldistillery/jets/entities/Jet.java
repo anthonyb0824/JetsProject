@@ -35,5 +35,8 @@ public class Jet {
 		return this.range;
 	}
 	
+	public long getPrice() {
+		return this.price;
+	}
 
 }
