@@ -50,17 +50,6 @@ public class AirField {
 		}
 	}
 
-//	@Override
-//	public String toString() {
-//		//string builder
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("AirField contains \n");
-//		for(int i = 0; i<jets.size();i++) {
-//		sb.append(jets.get(i).toString());
-//		}
-//		return sb.toString();
-//	}
-
 	public String listFleet() {
 		StringBuilder sb = new StringBuilder("AirField contains: \n");
 		for(int i = 0; i<jets.size();i++) {
@@ -229,5 +218,6 @@ public class AirField {
 		}
 
 	}
+
 
 }

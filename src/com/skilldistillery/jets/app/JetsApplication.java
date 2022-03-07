@@ -6,20 +6,22 @@ import com.skilldistillery.jets.entities.AirField;
 
 public class JetsApplication {
 	private static JetsApplication app = new JetsApplication();
-	private static AirField af = new AirField();
+	
 
 	public static void main(String[] args) {
+		AirField af = new AirField();
 		String fileName = "jets.java";
 		af.buildAirField(fileName);
-		app.menu();
+		app.menu(af);
 
 	}
 
-	public void menu() {
+	public void menu(AirField af) {
 		boolean keepgoing = true;
 		Scanner kb = new Scanner(System.in);
 		while (keepgoing) {
-
+			
+			System.out.println("Pick an iteam by number.");
 			System.out.println("1. List fleet");
 			System.out.println("2. Launch all jets");
 			System.out.println("3  View fastest jet");
@@ -74,6 +76,9 @@ public class JetsApplication {
 				keepgoing = false;
 				System.out.println("\n");
 				break;
+				default:
+					System.out.println("Invalid input, please try again. s");
+					break;
 			}
 		}
 		kb.close();
