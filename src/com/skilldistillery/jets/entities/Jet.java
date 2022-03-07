@@ -24,7 +24,7 @@ public class Jet {
 
 	@Override
 	public  String toString() {
-		return "[model=" + model + ", speed=" + speed + ", range=" + range + ", price=" + price + "]"+"\n";
+		return "model= " + model + ", speed= " + speed + ", range= " + range + ", price= " + price +"\n";
 	}
 	
 	public String getModel() {

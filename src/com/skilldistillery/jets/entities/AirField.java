@@ -181,7 +181,7 @@ public class AirField {
 			}
 		}
 		validInput = false;
-		System.out.println("Enter the prce:");
+		System.out.println("Enter the price:");
 		while (!validInput) {
 			try {
 				price = Long.parseLong(kb.next());
