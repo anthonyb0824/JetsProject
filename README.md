@@ -1,9 +1,9 @@
 # Jets Project
 
-##Description
+## Description
 Jets is a project that allows the user to manage an airfield. On start-up the airfield is populated with 5 types of jets. The program then displays a menu for the user to choose from.
 
-###Menu example
+### Menu example
 1. List fleet
 2. Launch all jets
 3  View fastest jet
